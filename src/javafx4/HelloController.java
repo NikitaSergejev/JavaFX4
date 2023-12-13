@@ -5,13 +5,18 @@
  */
 package javafx4;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  *
@@ -26,6 +31,18 @@ public class HelloController implements Initializable {
     private Button button;
     
     @FXML
+    private Parent root;
+    
+    @FXML
+    private Stage stageNewWindow;
+    
+    @FXML
+    private Scene sceneNewWindow;
+     
+    @FXML
+    private Parent rootNewWindow;
+            
+    @FXML
     private void clickMe(ActionEvent event) {
         if (button.getText().equals("Click Me!")) {
             System.out.println("please clicked me again!");
@@ -38,8 +55,13 @@ public class HelloController implements Initializable {
         
     }
     @FXML
-    private void newWindow(ActionEvent event) {
-        
+    private void newWindow() throws IOException {
+       root = FXMLLoader.load(getClass().getResource("/windows/NewWindow.fxml"));
+       stageNewWindow = new Stage();
+       sceneNewWindow = new Scene(root);
+       stageNewWindow.setTitle("New window");
+       stageNewWindow.setScene(sceneNewWindow);
+       stageNewWindow.show(); // Добавьте эту строку для отображения нового окна
         
     }
     
